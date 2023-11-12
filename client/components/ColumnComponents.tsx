@@ -27,10 +27,10 @@ allowDrop,
 onDragStart,
 }) => {
 return (
-    <div className="w-[35vw] p-4 h-[70vh] ">
+    <div className="w-[35vw] p-4 h-[70vh] text-black ">
     <h2 className="text-4xl font-bold mb-4 mx-[5%]">{columnTitle}</h2>
     <div
-        className="bg-gray-800 overflow-y-auto   rounded-lg border-2 border-gray-700 h-[90%] "
+        className="overflow-y-auto   rounded-lg  h-[90%] "
         onDrop={(e) => onDrop(e, columnTitle)}
         onDragOver={(e) => allowDrop(e)}
     >
@@ -39,20 +39,20 @@ return (
         .map((task) => (
             <div
             key={task.name}
-            className="bg-gray-700 py-[5%] m-[5%] h-[35%] w-[90%] rounded-xl cursor-move flex flex-col justify-center items-center"
+            className="bg-[#dff0f7] py-[5%] m-[5%] h-[35%] w-[90%] rounded-xl cursor-move flex flex-col justify-center items-center"
             draggable
             onDragStart={(e) => onDragStart(e, task)}
             >
             <div className='w-[90%] flex flex-row justify-between'>
-                <h1 className='text-4xl '>{task.name}</h1>
-                <button className=' bg-[#ffffff51] px-5 h-8 flex flex-col justify-center rounded-full items-center'>  {columnTitle}</button>   
+                <h1 className='text-2xl  '>{task.name}</h1>
+                <button className=' bg-[#ffffff51] text-sm px-5 h-8 flex flex-col justify-center rounded-full items-center'>  {columnTitle}</button>   
 
             </div>
             <div className='flex flex-row w-[90%] h-[20%] justify-evenly item-center ml-[-5%] gap-[10%] mt-[10%]' >
 
-                <button className='rounded-lg bg-[#ff00006b]  w-[40%] px-2 flex flex-col justify-center  items-center'>{task.timeToComplete}</button>
-                <button className='rounded-lg bg-[#00a2ff86]  px-2 w-[40%] flex flex-col justify-center  items-center'>{task.dueDate}</button>
-                <button className='rounded-lg bg-[#00ff1186]  px-2 w-[40%] flex flex-col justify-center  items-center'>{task.grouping}</button>
+                <button className='rounded-lg bg-[#ff00006b] text-sm  w-[40%] px-2 flex flex-col justify-center  items-center'>{task.timeToComplete}</button>
+                <button className='rounded-lg bg-[#00a2ff86] text-sm  px-2 w-[40%] flex flex-col justify-center  items-center'>{task.dueDate}</button>
+                <button className='rounded-lg bg-[#00ff1186] text-sm  px-2 w-[40%] flex flex-col justify-center  items-center'>{task.grouping}</button>
             </div>
             
             </div>
