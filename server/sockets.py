@@ -5,6 +5,10 @@ import urllib.request
 import websockets
 import io, base64
 from PIL import Image
+#import the hume function from ./humeCall.py
+import humeCall
+
+
 
 async def receive_image(websocket, path):
     async for message in websocket:
@@ -18,7 +22,19 @@ async def receive_image(websocket, path):
             base64_str = imageEncoded.split(',')[1]  # Get the base64-encoded image data from the URL
             img = Image.open(io.BytesIO(base64.decodebytes(bytes(base64_str, "utf-8"))))
             img.save("image.png", "PNG")
-             #   file_handler.write(base64.decodebytes(imageEncoded))
+            stress_value = humeCall.humeCall()
+
+            # Send the stress value back to the client
+            if stress_value > 4.6:
+                print("Stress value is high")
+                #play an mp3 file
+                playsound('./Ping.mp3')
+                
+                
+            #send a message to the client
+
+            print("Sending stress value to client... " + str(stress_value))
+            await websocket.send(str(stress_value))
         except:
             print("Error")
 
