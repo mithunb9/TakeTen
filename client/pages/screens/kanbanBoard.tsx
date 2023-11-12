@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ColumnComponent from '../components/ColumnComponents'; // Import the new component
+import ColumnComponent from '../../components/ColumnComponents'; // Import the new component
 
 interface Task {
   id: number; // Unique identifier for each task
@@ -16,28 +16,28 @@ const KanbanBoard: React.FC = () => {
     id: 1,
     name: 'Task 1',
     timeToComplete: '2 hours',
-    taskClass: 'Class A',
+    taskClass: 'In Progress',
     dueDate: '2023-12-01',
   },
   {
     id: 2,
     name: 'Task 2',
     timeToComplete: '1 hour',
-    taskClass: 'Class B',
+    taskClass: 'Not Started',
     dueDate: '2023-12-05',
   },
   {
     id: 3,
     name: 'Task 1',
     timeToComplete: '3 hours',
-    taskClass: 'Class C',
+    taskClass: 'Not Started',
     dueDate: '2023-12-10',
 },
 {
     id: 4,
     name: 'Task 4',
     timeToComplete: '4 hours',
-    taskClass: 'Class D',
+    taskClass: 'Not Started',
     dueDate: '2023-12-15',
 },
   //add more sample tasks
@@ -74,21 +74,21 @@ const KanbanBoard: React.FC = () => {
         {/* Use the ColumnComponent for each column */}
         <ColumnComponent
           tasks={tasks}
-          columnTitle="Class A"
+          columnTitle="Not Started"
           onDrop={handleDrop}
           allowDrop={allowDrop}
           onDragStart={handleDragStart}
         />
         <ColumnComponent
           tasks={tasks}
-          columnTitle="Class B"
+          columnTitle="In Progress"
           onDrop={handleDrop}
           allowDrop={allowDrop}
           onDragStart={handleDragStart}
         />
         <ColumnComponent
           tasks={tasks}
-          columnTitle="Class C"
+          columnTitle="Done"
           onDrop={handleDrop}
           allowDrop={allowDrop}
           onDragStart={handleDragStart}

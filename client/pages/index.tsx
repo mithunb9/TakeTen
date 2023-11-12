@@ -1,14 +1,16 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import KanbanBoard from './screens/KanbanBoard'
+import Navbar from "../components/NavBar"
+import KanbanBoard from './screens/kanbanBoard'
 
-const inter = Inter({ subsets: ['latin'] })
+
+
 
 export default function Home() {
   return (
     <>
-      <KanbanBoard />
+      
       <Navbar/>
+      <KanbanBoard />
 
     </>
   )

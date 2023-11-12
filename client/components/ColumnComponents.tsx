@@ -48,9 +48,9 @@ return (
             </div>
             <div className='flex flex-row w-[90%] h-[20%] justify-evenly item-center ml-[-5%] gap-[10%] mt-[10%]' >
 
-                <button className='rounded-lg bg-[#ff00006b]  px-5 flex flex-col justify-center  items-center'>{task.timeToComplete}</button>
-                <button className='rounded-lg bg-[#00a2ff86]  px-5 flex flex-col justify-center  items-center'>{task.dueDate}</button>
-                <button className='rounded-lg bg-[#33ff006b]  px-5 flex flex-col justify-center  items-center'>{task.taskClass}</button>
+                <button className='rounded-lg bg-[#ff00006b]  w-fit px-4 flex flex-col justify-center  items-center'>{task.timeToComplete}</button>
+                <button className='rounded-lg bg-[#00a2ff86]  px-4 w-fit flex flex-col justify-center  items-center'>{task.dueDate}</button>
+                <button className='rounded-lg bg-[#33ff006b]  px-4 flex w-fit flex-col justify-center  items-center'>{task.taskClass}</button>
             </div>
             </div>
         ))}
