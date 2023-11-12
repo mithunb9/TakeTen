@@ -88,10 +88,10 @@ export default function Photos () {
                     )} */}
                    <div className=" flex flex-row justify-center items-center">
                     <button className="bg-gray-800 text-white py-2 px-4 rounded-md " onClick={toggleCapture}>
-                        {isCapturing ? 'Pause' : 'Start'} {counter}
+                        {isCapturing ? 'Pause' : 'Start'}
                     </button>
                     <button className="bg-gray-800 text-white py-2 px-4 rounded-md m-2" onClick={() => setUrl(null)}>
-                        Delete {highStress}
+                        Delete 
                     </button>
                 </div>
                 </div>
