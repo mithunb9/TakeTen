@@ -33,31 +33,147 @@ export async function task(prompt: any) {
 }
 
 export async function task4(prompt: any) {
-  const chatTask = await openai.chat.completions.create({
-    messages: [
-      {
-        role: "user",
-        content: `Can you identify the task, due date (in the same format as given and only that mm/dd/yy) todays date is 11/12/23, class from the following in the format, and an estimated time between 1-3 numerically in hours to complete the task I want exactly a number not a range?
-      Name
-      dueDate
-      class
-      time
-      ==
-      Name
-      dueDate
-      class
-      time
-    without code and only format no response when you return them add == in between each task not surrounding to serve as the delimitor
+  // const chatTask = await openai.chat.completions.create({
+  //   messages: [
+  //     {
+  //       role: "user",
+  //       content: `Can you identify the task, due date (in the same format as given and only that mm/dd/yy) todays date is 11/12/23, class from the following in the format, and an estimated time between 1-3 numerically in hours to complete the task I want exactly a number not a range?
+  //     Name
+  //     dueDate
+  //     class
+  //     time
+  //     ==
+  //     Name
+  //     dueDate
+  //     class
+  //     time
+  //   without code and only format no response when you return them add == in between each task not surrounding to serve as the delimitor
 
-    ${prompt}`,
-      },
-    ],
-    model: "gpt-4",
-  });
+  //   ${prompt}`,
+  //     },
+  //   ],
+  //   model: "gpt-4",
+  // });
 
-  console.log(chatTask);
+  // console.log(chatTask);
 
-  return chatTask.choices[0].message.content;
+  // return chatTask.choices[0].message.content;
+  return [
+    {
+      name: "Participation Quiz-1",
+      dueDate: "09/03/23",
+      className: "CS 4349_001",
+      time: "1",
+    },
+    {
+      name: "Assignment-2",
+      dueDate: "09/10/23",
+      className: "CS 4349_001",
+      time: "2",
+    },
+    {
+      name: "Participation Quiz-2",
+      dueDate: "09/10/23",
+      className: "CS 4349_001",
+      time: "1",
+    },
+    {
+      name: "Assignment-3",
+      dueDate: "09/24/23",
+      className: "CS 4349_001",
+      time: "3",
+    },
+    {
+      name: "Participation Quiz-3",
+      dueDate: "09/24/23",
+      className: "CS 4349_001",
+      time: "1",
+    },
+    {
+      name: "Sample Exam-1",
+      dueDate: "09/29/23",
+      className: "CS 4349_001",
+      time: "2",
+    },
+    {
+      name: "Exam-1",
+      dueDate: "10/03/23",
+      className: "CS 4349_001",
+      time: "2",
+    },
+    {
+      name: "Assignment-4",
+      dueDate: "10/15/23",
+      className: "class: CS 4349_001",
+      time: "time: 3",
+    },
+    {
+      name: "Name: Participation Quiz-4",
+      dueDate: "dueDate: 10/15/23",
+      className: "class: CS 4349_001",
+      time: "time: 1",
+    },
+    {
+      name: "Name: Assignment-5",
+      dueDate: "dueDate: 10/22/23",
+      className: "class: CS 4349_001",
+      time: "time: 3",
+    },
+    {
+      name: "Name: Participation Quiz-5",
+      dueDate: "dueDate: 10/22/23",
+      className: "class: CS 4349_001",
+      time: "time: 1",
+    },
+    {
+      name: "Name: Sample Exam-2",
+      dueDate: "dueDate: 10/29/23",
+      className: "class: CS 4349_001",
+      time: "time: 2",
+    },
+    {
+      name: "Name: Exam-2",
+      dueDate: "dueDate: 11/07/23",
+      className: "class: CS 4349_001",
+      time: "time: 2",
+    },
+    {
+      name: "Name: Assignment-6",
+      dueDate: "dueDate: 11/19/23",
+      className: "class: CS 4349_001",
+      time: "time: 3",
+    },
+    {
+      name: "Name: Participation Quiz-6",
+      dueDate: "dueDate: 11/19/23",
+      className: "class: CS 4349_001",
+      time: "time: 1",
+    },
+    {
+      name: "Name: Assignment-7",
+      dueDate: "dueDate: 12/03/23",
+      className: "class: CS 4349_001",
+      time: "time: 3",
+    },
+    {
+      name: "Name: Participation Quiz-7",
+      dueDate: "dueDate: 12/03/23",
+      className: "class: CS 4349_001",
+      time: "time: 1",
+    },
+    {
+      name: "Name: Sample Exam-3",
+      dueDate: "dueDate: 12/07/23",
+      className: "class: CS 4349_001",
+      time: "time: 2",
+    },
+    {
+      name: "Name: Exam-3",
+      dueDate: "dueDate: 12/12/23",
+      className: "class: CS 4349_001",
+      time: "time: 2",
+    },
+  ];
 }
 
 export async function schedule(prompt: any) {

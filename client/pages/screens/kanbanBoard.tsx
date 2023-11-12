@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import ColumnComponent from "../../components/ColumnComponents"; // Import the new component
 import Modal from "../../components/Modal";
 import axios from "axios";
-import { GrCheckmark, GrClose } from "react-icons/gr";
+import { GrCheckmark, GrClose, GrAttachment } from "react-icons/gr";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsPlay } from "react-icons/bs";
 import Dropzone from "react-dropzone";
@@ -29,24 +29,7 @@ interface uploadProps {
 const KanbanBoard: React.FC = () => {
   const router = useRouter();
 
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      name: "Task 1",
-      timeToComplete: "3 hour",
-      progress: "Not Started",
-      dueDate: "2023-12-31",
-      grouping: "Group 1",
-      id: 1,
-    },
-    {
-      name: "Task 2",
-      timeToComplete: "1 hour",
-      progress: "Not Started",
-      dueDate: "2023-12-31",
-      grouping: "Group 1",
-      id: 2,
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [taskName, setTaskName] = useState("");
@@ -58,6 +41,26 @@ const KanbanBoard: React.FC = () => {
   const [modalSessionOpen, setModalSessionOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
 
+  const [isUploading, setIsUploading] = useState(false);
+
+  const Spinner = () => (
+    <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 0116 0H4z"
+      ></path>
+    </svg>
+  );
+
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -67,6 +70,8 @@ const KanbanBoard: React.FC = () => {
       alert("Please select a file first!");
       return;
     }
+
+    setIsUploading(true);
 
     const formData = new FormData();
     formData.append("file", selectedFile);
@@ -99,6 +104,9 @@ const KanbanBoard: React.FC = () => {
             setTasks([...tasks, ...newTasks]);
 
             console.log("Task blocks:", parsedData);
+
+            setIsUploading(false);
+            setModalOpen(false);
           } else {
             console.error("Invalid data format received from server");
           }
@@ -114,6 +122,8 @@ const KanbanBoard: React.FC = () => {
     } catch (error) {
       console.error("Error uploading file:", error);
     }
+
+    setIsUploading(false);
   };
 
   const addTask = () => {
@@ -299,45 +309,51 @@ const KanbanBoard: React.FC = () => {
               placeholder="Task Name"
               onChange={updateTaskName}
               value={taskName}
-              className="border-2 border-gray-300 p-2 rounded-lg w-full"
+              className="border-2 border-black bg-inherit p-2 rounded-lg w-full"
             />
 
-            <div className="flex flex-row">
+            <div className="flex flex-row my-2 space-x-2">
               <input
                 value={taskClass}
                 placeholder="Class Name"
                 onChange={updateTaskClass}
-                className="border-2 border-gray-300 p-2 rounded-lg w-full"
+                className="border-2 border-black bg-inherit p-2 rounded-lg w-full"
               />
               <input
                 value={taskDueDate}
                 placeholder="Due Date"
                 onChange={updateTaskDueDate}
-                className="border-2 border-gray-300 p-2 rounded-lg w-full"
+                className="border-2 border-black bg-inherit p-2 rounded-lg w-full"
               />
             </div>
-            <div>
-              <input type="file" accept=".pdf" onChange={handleFileChange} />
+            <div className="border-b border-black h-[1px]"></div>
+            <div className="flex flex-row">
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={handleFileChange}
+                className=" text-black font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 outline mt-4 font-normal"
+              />
               <button
                 onClick={handleFileUpload}
-                className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black hover:outline"
+                className="bg-blue-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 h-10 mt-[1.2rem]"
               >
-                Upload and Extract Text
+                {isUploading ? <Spinner /> : <GrAttachment />}
+                {isUploading ? "Uploading..." : " Upload"}
               </button>
             </div>
-            {/* make file upload */}
           </div>
 
           <div className="flex flex-row items-center mt-4">
             <button
               onClick={() => setModalOpen(false)}
-              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4"
+              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center mr-4"
             >
               <GrClose className="mr-2" color="white" />
               Close
             </button>
             <button
-              className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
+              className="bg-blue-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
               onClick={submitTaskName}
             >
               <GrCheckmark className="mr-2" color="white" />

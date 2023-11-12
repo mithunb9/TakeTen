@@ -27,7 +27,9 @@ const FileUpload = () => {
 
         // Check if data is non-empty and is a string
         if (data && typeof data === "string") {
-          console.log("Task blocks:", data);
+          let taskArray = data;
+
+          console.log("Task blocks:", taskArray);
         } else {
           console.error("No text data received from server");
         }

@@ -25,29 +25,29 @@ export default async function handler(req, res) {
 
     const aiData = await task4(pdfData.text);
 
-    let splitData = aiData?.split("==");
+    // let splitData = aiData?.split("==");
 
-    console.log("aiData", aiData);
-    splitData?.shift();
-    // turn into array of objects
+    // console.log("aiData", aiData);
+    // splitData?.shift();
+    // // turn into array of objects
 
-    console.log("split", splitData);
+    // console.log("split", splitData);
 
-    let tasks = [];
+    // let tasks = [];
 
-    for (let i = 0; i < splitData?.length; i++) {
-      let task = splitData[i].split("\n");
-      tasks.push({
-        name: task[1],
-        dueDate: task[2],
-        className: task[3],
-        time: task[4],
-      });
-    }
+    // for (let i = 0; i < splitData?.length; i++) {
+    //   let task = splitData[i].split("\n");
+    //   tasks.push({
+    //     name: task[1],
+    //     dueDate: task[2],
+    //     className: task[3],
+    //     time: task[4],
+    //   });
+    // }
 
-    console.log("dawg", tasks);
+    // console.log("dawg", tasks);
 
-    res.status(200).json(tasks);
+    res.status(200).json(aiData);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
