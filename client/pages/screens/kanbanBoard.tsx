@@ -5,7 +5,7 @@ import axios from "axios";
 import { GrCheckmark, GrClose } from "react-icons/gr";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsPlay } from "react-icons/bs";
-import {HiOutlineDocumentDownload} from "react-icons/hi";
+import { HiOutlineDocumentDownload } from "react-icons/hi";
 
 interface Task {
   id: number; // Unique identifier for each task
@@ -148,7 +148,7 @@ const KanbanBoard: React.FC = () => {
             onDrop={handleDrop}
             allowDrop={allowDrop}
             onDragStart={handleDragStart}
-            color="bg-[#E94F37] text-white"
+            color="text-[#E94F37]"
           />
           <div className="w-0.25 h-[100%] border border-black" />
           <ColumnComponent
@@ -157,7 +157,7 @@ const KanbanBoard: React.FC = () => {
             onDrop={handleDrop}
             allowDrop={allowDrop}
             onDragStart={handleDragStart}
-            color="bg-[#56638A] text-white"
+            color="text-[#56638A]"
           />
           <div className="w-0.25 h-[100%] border border-black" />
 
@@ -167,17 +167,16 @@ const KanbanBoard: React.FC = () => {
             onDrop={handleDrop}
             allowDrop={allowDrop}
             onDragStart={handleDragStart}
-            color="bg-[#63D471] text-white"
+            color="text-[#63D471]"
           />
         </div>
         <div className="w-[90vw] flex justify-end gap-[15%] items-center h-[10vh]">
-          <div className="flex flex-col  mb-[15%]">
+          <div className="flex flex-col mb-[15%]">
             <button
-            className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
-            onClick={() => setFileUploadModalOpen(true)}
+              className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
+              onClick={() => setFileUploadModalOpen(true)}
             >
-            <HiOutlineDocumentDownload/>
-
+              <HiOutlineDocumentDownload />
             </button>
             <button
               className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
@@ -278,13 +277,10 @@ const KanbanBoard: React.FC = () => {
       </Modal>
       <Modal
         isOpen={modalSessionOpen}
-          onClose={() => {
-            setFileUploadModalOpen(false);
-          }}
-        >
-      
-      </Modal>
-        
+        onClose={() => {
+          setFileUploadModalOpen(false);
+        }}
+      ></Modal>
     </>
   );
 };

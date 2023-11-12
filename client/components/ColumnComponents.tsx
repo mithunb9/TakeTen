@@ -14,7 +14,7 @@ interface ColumnProps {
   onDrop: (e: React.DragEvent<HTMLDivElement>, newColumn: string) => void;
   allowDrop: (e: React.DragEvent<HTMLDivElement>) => void;
   onDragStart: (e: React.DragEvent<HTMLDivElement>, task: Task) => void;
-    color: string;
+  color: string;
 }
 const ColumnComponent: React.FC<ColumnProps> = ({
   tasks,
