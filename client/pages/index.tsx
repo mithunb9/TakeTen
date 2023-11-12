@@ -1,10 +1,10 @@
-import React from 'react';
-import Navbar from '../components/NavBar';  
+import React from "react";
+import Navbar from "../components/NavBar";
 
-export default function Home(){
-  return(
+export default function Home() {
+  return (
     <>
-      <Navbar/>
+      <Navbar />
     </>
-  )
+  );
 }
