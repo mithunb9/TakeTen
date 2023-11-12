@@ -6,6 +6,7 @@ import { GrCheckmark, GrClose } from "react-icons/gr";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsPlay } from "react-icons/bs";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
+import { useRouter } from "next/router";
 
 interface Task {
   id: number; // Unique identifier for each task
@@ -17,7 +18,26 @@ interface Task {
 }
 
 const KanbanBoard: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const router = useRouter();
+
+  const [tasks, setTasks] = useState<Task[]>([
+    {
+      name: "Task 1",
+      timeToComplete: "3 hour",
+      progress: "Not Started",
+      dueDate: "2023-12-31",
+      grouping: "Group 1",
+      id: 1,
+    },
+    {
+      name: "Task 2",
+      timeToComplete: "1 hour",
+      progress: "Not Started",
+      dueDate: "2023-12-31",
+      grouping: "Group 1",
+      id: 2,
+    },
+  ]);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [taskName, setTaskName] = useState("");
@@ -25,6 +45,7 @@ const KanbanBoard: React.FC = () => {
   const [taskDueDate, setTaskDueDate] = useState("");
   const [taskTime, setTaskTime] = useState("");
   const [shown, setShown] = useState(false);
+  const [length, setLength] = useState(6);
 
   const [modalSessionOpen, setModalSessionOpen] = useState(false);
   const [fileUploadModalOpen, setFileUploadModalOpen] = useState(false);
@@ -137,6 +158,16 @@ const KanbanBoard: React.FC = () => {
     }
   }
 
+  function startSession(): void {
+    setModalSessionOpen(false);
+    console.log(length);
+    // route to page class
+    router.push({
+      pathname: "/study",
+      query: { length: length, tasks: JSON.stringify(tasks) },
+    });
+  }
+
   return (
     <>
       <div className="flex flex-col justify-center items-center h-[80vh] mt-[5vh] text-white">
@@ -186,7 +217,7 @@ const KanbanBoard: React.FC = () => {
             </button>
             <button
               className="rounded-full h-16 my-5 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
-              onClick={() => setModalOpen(true)}
+              onClick={() => setModalSessionOpen(true)}
             >
               <BsPlay />
             </button>
@@ -256,31 +287,29 @@ const KanbanBoard: React.FC = () => {
             <input
               type="number"
               placeholder="Number of hours to study"
+              value={length}
+              onChange={(e) => setLength(parseInt(e.target.value))}
               className="border-2 border-gray-300 p-2 rounded-lg w-full"
             />
           </div>
           <div className="flex flex-row items-center mt-4">
             <button
-              className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
               onClick={() => setModalOpen(false)}
+              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
             >
-              Confirm
+              <GrClose className="mr-2" color="white" />
+              Close
             </button>
             <button
-              onClick={() => setModalOpen(false)}
-              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4"
+              className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 "
+              onClick={startSession}
             >
-              Close
+              <GrCheckmark className="mr-2" />
+              Confirm
             </button>
           </div>
         </div>
       </Modal>
-      <Modal
-        isOpen={modalSessionOpen}
-        onClose={() => {
-          setFileUploadModalOpen(false);
-        }}
-      ></Modal>
     </>
   );
 };
