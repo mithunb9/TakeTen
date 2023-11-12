@@ -1,4 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+client/.next/
 
 # dependencies
 /node_modules
@@ -38,3 +39,19 @@ next-env.d.ts
 node_modules
 
 *.env
+client/.next/
+client/.next/static/chunks/webpack.js
+client/.next/static/chunks/pages/index.js
+client/.next/static/chunks/pages/_app.js
+client/.next/static/chunks/main.js
+client/.next/server/vendor-chunks/@swc.js
+client/.next/server/pages/index.js
+client/.next/server/pages/_error.js
+client/.next/server/pages/_document.js
+client/.next/server/pages/_app.js
+client/.next/cache/webpack/server-development/index.pack.gz.old
+client/.next/cache/webpack/server-development/index.pack.gz
+client/.next/cache/webpack/server-development/0.pack.gz
+client/.next/cache/webpack/client-development/index.pack.gz.old
+client/.next/cache/webpack/client-development/index.pack.gz
+client/.next/cache/webpack/client-development/0.pack.gz
