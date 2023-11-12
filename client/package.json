@@ -14,12 +14,17 @@
     "axios": "^1.6.1",
     "next": "14.0.2",
     "openai": "^4.17.4",
+    "pdf-parse": "^1.1.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "react-webcam": "^7.2.0",
+    "requests": "^0.3.0",
+    "webcam": "^3.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/pdf-parse": "^1.1.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

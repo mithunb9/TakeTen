@@ -28,7 +28,7 @@ const ColumnComponent: React.FC<ColumnProps> = ({
     <div className="w-[35vw] p-4 h-[70vh] text-black mx-auto">
       <div className="flex flex-row items-center">
         <div className={"rounded-lg w-1/2 h-12 text-center " + color}>
-          <h2 className="text-4xl font-bold mb-4 mx-[5%]">{columnTitle}</h2>
+          <h2 className="text-3xl font-bold mb-4 mx-[5%]">{columnTitle}</h2>
         </div>
       </div>
       <div
