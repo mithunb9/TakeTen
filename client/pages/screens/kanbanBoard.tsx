@@ -361,9 +361,7 @@ const KanbanBoard: React.FC = () => {
               onChange={(e) => setLength(parseInt(e.target.value))}
               className="border-2 border-gray-300 p-2 rounded-lg w-full"
             />
-            <div className=" flex flex-row justify-end items-center mt-[-30vh]">
-              <Webcam />
-            </div>
+
             <div className="flex flex-row items-center mt-4">
               <button
                 onClick={() => setModalSessionOpen(false)}
