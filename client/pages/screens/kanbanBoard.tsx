@@ -131,6 +131,7 @@ const KanbanBoard: React.FC = () => {
             onDrop={handleDrop}
             allowDrop={allowDrop}
             onDragStart={handleDragStart}
+            color="bg-[#E94F37] text-white"
           />
           <div className="w-0.25 h-[100%] border border-black" />
           <ColumnComponent
@@ -139,6 +140,7 @@ const KanbanBoard: React.FC = () => {
             onDrop={handleDrop}
             allowDrop={allowDrop}
             onDragStart={handleDragStart}
+            color="bg-[#56638A] text-white"
           />
           <div className="w-0.25 h-[100%] border border-black" />
 
@@ -148,11 +150,12 @@ const KanbanBoard: React.FC = () => {
             onDrop={handleDrop}
             allowDrop={allowDrop}
             onDragStart={handleDragStart}
+            color="bg-[#63D471] text-white"
           />
         </div>
         <div className="w-[90vw] flex justify-end items-center h-[10vh]">
           <button
-            className=" bg-[#ffffff29] rounded-full h-16 flex items-center justify-center w-16 gap-[2%] hover:bg-[#424cb7] hover:text-white hover:delay-150 text-black text-4xl px-5"
+            className=" bg-[#424cb7] rounded-full h-16 flex items-center justify-center w-16 gap-[2%] hover:bg-[#ffffff29] text-white hover:delay-150 hover:text-black text-4xl px-5"
             onClick={addTask}
           >
             <AiOutlinePlus />
