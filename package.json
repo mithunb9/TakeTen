@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "openai": "^4.17.4"
+    "install": "^0.13.0",
+    "npm": "^10.2.3",
+    "openai": "^4.17.4",
+    "pdf-parse": "^1.1.1",
+    "react-dropzone": "^14.2.3"
   }
 }
