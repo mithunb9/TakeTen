@@ -395,8 +395,8 @@ const KanbanBoard: React.FC = () => {
                 className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 "
                 onClick={startSession}
               >
-                {isProcessing ? <Spinner /> : <GrCheckmark className="mr-2" />}
-                {isProcessing ? "Processing..." : " Submit"}
+                <BsPlay className="mr-2" />
+                Start
               </button>
             </div>
           </div>
