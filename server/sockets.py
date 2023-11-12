@@ -7,12 +7,14 @@ import websockets
 async def receive_image(websocket, path):
     async for message in websocket:
         # Decode the base64-encoded URL
-        print("Message received")
-        print(message)
+        
+        print(f"Message received: {message[:50]}")  # Display first 50 characters
+
         imageEncoded = message
         try:
-            with open('image.png', 'wb') as file_handler:
-                file_handler.write(base64.decodebytes(imageEncoded))
+            #with open('image.png', 'wb') as file_handler:
+             pass
+             #   file_handler.write(base64.decodebytes(imageEncoded))
         except:
             print("Error")
 
