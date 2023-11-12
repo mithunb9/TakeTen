@@ -8,6 +8,8 @@ import { BsPlay } from "react-icons/bs";
 import Dropzone from "react-dropzone";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Webcam from "./photos";
+import { HiOutlineDocumentDownload } from "react-icons/hi";
+import { useRouter } from "next/router";
 
 interface Task {
   id: number; // Unique identifier for each task
@@ -25,7 +27,26 @@ interface uploadProps {
 
 
 const KanbanBoard: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const router = useRouter();
+
+  const [tasks, setTasks] = useState<Task[]>([
+    {
+      name: "Task 1",
+      timeToComplete: "3 hour",
+      progress: "Not Started",
+      dueDate: "2023-12-31",
+      grouping: "Group 1",
+      id: 1,
+    },
+    {
+      name: "Task 2",
+      timeToComplete: "1 hour",
+      progress: "Not Started",
+      dueDate: "2023-12-31",
+      grouping: "Group 1",
+      id: 2,
+    },
+  ]);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [taskName, setTaskName] = useState("");
@@ -33,6 +54,7 @@ const KanbanBoard: React.FC = () => {
   const [taskDueDate, setTaskDueDate] = useState("");
   const [taskTime, setTaskTime] = useState("");
   const [shown, setShown] = useState(false);
+  const [length, setLength] = useState(6);
 
   const [modalSessionOpen, setModalSessionOpen] = useState(false);
 
@@ -142,6 +164,16 @@ const KanbanBoard: React.FC = () => {
       setTaskTime("");
       setShown(false);
     }
+  }
+
+  function startSession(): void {
+    setModalSessionOpen(false);
+    console.log(length);
+    // route to page class
+    router.push({
+      pathname: "/study",
+      query: { length: length, tasks: JSON.stringify(tasks) },
+    });
   }
 
   return (
@@ -259,6 +291,8 @@ const KanbanBoard: React.FC = () => {
             <input
               type="number"
               placeholder="Number of hours to study"
+              value={length}
+              onChange={(e) => setLength(parseInt(e.target.value))}
               className="border-2 border-gray-300 p-2 rounded-lg w-full"
             />
             <div className=" flex flex-row justify-end items-center mt-[-30vh]">
@@ -270,16 +304,18 @@ const KanbanBoard: React.FC = () => {
           </div>
           <div className="flex flex-row items-center mt-4">
             <button
-              className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
               onClick={() => setModalOpen(false)}
+              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
             >
-              Confirm
+              <GrClose className="mr-2" color="white" />
+              Close
             </button>
             <button
-              onClick={() => setModalOpen(false)}
-              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4"
+              className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 "
+              onClick={startSession}
             >
-              Close
+              <GrCheckmark className="mr-2" />
+              Confirm
             </button>
           </div>
         </div>
