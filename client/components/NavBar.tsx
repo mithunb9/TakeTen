@@ -2,9 +2,9 @@ import React from 'react';
 
 const Navbar = () => {
   return (
-    <div className='flex flex-row justify-between items-center'>
+    <div className='flex flex-row justify-between bg-white-500 items-center h-[10vh]'>
         <div>
-            <h1 className='text-xl'>Take10</h1>
+            <h1 className='text-xl'></h1>
         </div>
         <div>
             <button className='bg-[#00ff00]'>
