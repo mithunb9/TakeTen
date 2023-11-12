@@ -10,6 +10,7 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import Webcam from "./photos";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
 import { useRouter } from "next/router";
+import FileUpload from "@/components/FileUpload";
 
 interface Task {
   id: number; // Unique identifier for each task
@@ -54,8 +55,66 @@ const KanbanBoard: React.FC = () => {
   const [taskTime, setTaskTime] = useState("");
   const [shown, setShown] = useState(false);
   const [length, setLength] = useState(6);
-
   const [modalSessionOpen, setModalSessionOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleFileUpload = async () => {
+    if (!selectedFile) {
+      alert("Please select a file first!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.text();
+
+        if (data && typeof data === "string") {
+          const parsedData = JSON.parse(data); // Assuming data is a JSON string
+
+          if (Array.isArray(parsedData)) {
+            // Iterate through each object in parsedData and add to tasks
+            const newTasks = parsedData.map((item, index) => ({
+              id: tasks.length + index + 1, // Generate a unique id
+              name: item.name || "Task " + (tasks.length + index + 1),
+              timeToComplete: item.time || "1 hour",
+              progress: "Not Started",
+              dueDate: item.dueDate || "2023-12-31",
+              grouping: item.className.split("_")[0] || "Group 1",
+              ...item, // Include any additional properties from item
+            }));
+
+            // Add the new tasks to the current state
+            setTasks([...tasks, ...newTasks]);
+
+            console.log("Task blocks:", parsedData);
+          } else {
+            console.error("Invalid data format received from server");
+          }
+        } else {
+          console.error("No text data received from server");
+        }
+      } else {
+        console.error(
+          "Error uploading file. Server returned:",
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
 
   const addTask = () => {
     setModalOpen(true);
@@ -257,6 +316,16 @@ const KanbanBoard: React.FC = () => {
                 className="border-2 border-gray-300 p-2 rounded-lg w-full"
               />
             </div>
+            <div>
+              <input type="file" accept=".pdf" onChange={handleFileChange} />
+              <button
+                onClick={handleFileUpload}
+                className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black hover:outline"
+              >
+                Upload and Extract Text
+              </button>
+            </div>
+            {/* make file upload */}
           </div>
 
           <div className="flex flex-row items-center mt-4">
