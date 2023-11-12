@@ -1,10 +1,15 @@
-import React from 'react';
-import Navbar from '../components/NavBar';  
+import Image from 'next/image'
+import { Inter } from 'next/font/google'
+import KanbanBoard from './screens/KanbanBoard'
 
-export default function Home(){
-  return(
+const inter = Inter({ subsets: ['latin'] })
+
+export default function Home() {
+  return (
     <>
+      <KanbanBoard />
       <Navbar/>
+
     </>
   )
 }
