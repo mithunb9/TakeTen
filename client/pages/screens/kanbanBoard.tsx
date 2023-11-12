@@ -21,10 +21,9 @@ interface Task {
 }
 
 interface uploadProps {
-    filetype: any;
-    inputTextPlaceholder?: any;
+  filetype: any;
+  inputTextPlaceholder?: any;
 }
-
 
 const KanbanBoard: React.FC = () => {
   const router = useRouter();
@@ -211,7 +210,6 @@ const KanbanBoard: React.FC = () => {
         </div>
         <div className="w-[90vw] flex justify-end gap-[15%] items-center h-[10vh]">
           <div className="flex flex-col mb-[15%]">
-
             <button
               className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black hover:outline"
               onClick={addTask}
@@ -261,7 +259,6 @@ const KanbanBoard: React.FC = () => {
             </div>
           </div>
 
-
           <div className="flex flex-row items-center mt-4">
             <button
               onClick={() => setModalOpen(false)}
@@ -296,31 +293,27 @@ const KanbanBoard: React.FC = () => {
               className="border-2 border-gray-300 p-2 rounded-lg w-full"
             />
             <div className=" flex flex-row justify-end items-center mt-[-30vh]">
-              <div className="w-[20vw] h-[35vh] mr-5 bg-black">
-
-              </div>
               <Webcam />
             </div>
-          </div>
-          <div className="flex flex-row items-center mt-4">
-            <button
-              onClick={() => setModalOpen(false)}
-              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
-            >
-              <GrClose className="mr-2" color="white" />
-              Close
-            </button>
-            <button
-              className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 "
-              onClick={startSession}
-            >
-              <GrCheckmark className="mr-2" />
-              Confirm
-            </button>
+            <div className="flex flex-row items-center mt-4">
+              <button
+                onClick={() => setModalSessionOpen(false)}
+                className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
+              >
+                <GrClose className="mr-2" color="white" />
+                Close
+              </button>
+              <button
+                className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 "
+                onClick={startSession}
+              >
+                <GrCheckmark className="mr-2" />
+                Confirm
+              </button>
+            </div>
           </div>
         </div>
       </Modal>
-
     </>
   );
 };
