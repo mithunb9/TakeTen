@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import Webcam from "react-webcam";
 
 const videoConstraints = {
@@ -19,6 +19,11 @@ export default function Photos () {
         if (imageSrc) {
             setUrl(imageSrc);
             console.log(imageSrc);
+            // send image url to socket server
+            const socket = new WebSocket('ws://localhost:8765');
+            socket.addEventListener('open', function (event) {
+                socket.send(imageSrc);
+            });
         }
     }, [webcamRef]);
 
@@ -26,12 +31,18 @@ export default function Photos () {
         setIsCapturing(!isCapturing);
     }
 
-    //take a picture every 5 seconds
-    setInterval(() => {
+    const [counter, setCounter] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+        setCounter((prevCounter) => prevCounter + 1);
         if (isCapturing) {
             capture();
         }
-    }, 5000);
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [isCapturing, capture]);
 
     return (
         <div className="flex flex-col items-center justify-center">
@@ -53,7 +64,7 @@ export default function Photos () {
                     )} */}
                    <div className=" flex flex-row justify-center items-center">
                     <button className="bg-gray-800 text-white py-2 px-4 rounded-md " onClick={toggleCapture}>
-                        {isCapturing ? 'Pause' : 'Start'}
+                        {isCapturing ? 'Pause' : 'Start'} {counter}
                     </button>
                     <button className="bg-gray-800 text-white py-2 px-4 rounded-md m-2" onClick={() => setUrl(null)}>
                         Delete
