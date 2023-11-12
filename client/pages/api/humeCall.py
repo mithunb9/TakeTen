@@ -1,3 +1,4 @@
+
 import io
 import numpy as np
 import pandas as pd
@@ -17,7 +18,7 @@ all_emotions = ['Anxiety', 'Awkwardness', 'Boredom', 'Confusion', 'Contempt', 'C
                    'Pain', 'Sadness', 'Shame', 'Surprise (negative)', 'Tiredness']
 
 # File path of the image
-image_path = "client/pages/api/Carol.jpg"
+image_path = "client/pages/api/image.png"
 
 # Start Hume Batch API
 batch_client = HumeBatchClient(API_KEY)
