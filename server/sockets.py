@@ -3,6 +3,8 @@ import base64
 import os
 import urllib.request
 import websockets
+import io, base64
+from PIL import Image
 
 async def receive_image(websocket, path):
     async for message in websocket:
@@ -13,7 +15,9 @@ async def receive_image(websocket, path):
         imageEncoded = message
         try:
             #with open('image.png', 'wb') as file_handler:
-             pass
+            base64_str = imageEncoded.split(',')[1]  # Get the base64-encoded image data from the URL
+            img = Image.open(io.BytesIO(base64.decodebytes(bytes(base64_str, "utf-8"))))
+            img.save("image.png", "PNG")
              #   file_handler.write(base64.decodebytes(imageEncoded))
         except:
             print("Error")
