@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import ColumnComponent from '../../components/ColumnComponents'; // Import the new component
+import {AiOutlinePlus} from 'react-icons/ai';
 
 interface Task {
-id: number; // Unique identifier for each task
-name: string;
-timeToComplete: string;
-progress: string;
-dueDate: string;
-grouping: string;
-
+  id: number; // Unique identifier for each task
+  name: string;
+  timeToComplete: string;
+  progress: string;
+  dueDate: string;
+  grouping: string;
 }
 
 
@@ -88,11 +88,8 @@ const KanbanBoard: React.FC = () => {
 
   return (
     <>
-    <div className='h-[5vh]'>
-      <button className='bg-[#ffffff] rounded-full text-black tet-lg px-5' onClick={addTask}>Add Task</button>
-    </div>
-    <div className="flex justify-center items-center h-screen  text-white">
-      <div className="flex w-[90%] h-[80vh]">
+    <div className="flex flex-col justify-center items-center h-[80vh] mt-[5vh] text-white">
+      <div className="flex flex-row w-[90%]">
         {/* Use the ColumnComponent for each column */}
         <ColumnComponent
           tasks={tasks}
@@ -101,6 +98,7 @@ const KanbanBoard: React.FC = () => {
           allowDrop={allowDrop}
           onDragStart={handleDragStart}
         />
+        <div className='w-0.25 h-[100%] border border-black'/>
         <ColumnComponent
           tasks={tasks}
           columnTitle="In Progress"
@@ -108,6 +106,8 @@ const KanbanBoard: React.FC = () => {
           allowDrop={allowDrop}
           onDragStart={handleDragStart}
         />
+        <div className='w-0.25 h-[100%] border border-black'/>
+
         <ColumnComponent
           tasks={tasks}
           columnTitle="Done"
@@ -116,6 +116,11 @@ const KanbanBoard: React.FC = () => {
           onDragStart={handleDragStart}
         />
       </div>
+      <div className='w-[90vw] flex justify-end items-center h-[10vh]'>
+        <button className=' bg-[#ffffff29] rounded-full h-16 flex items-center justify-center w-16 gap-[2%] hover:bg-[#424cb7] hover:text-white hover:delay-150 text-black text-4xl px-5' onClick={addTask}><AiOutlinePlus/></button>
+      </div>
+      
+
     </div>
     
     </>
