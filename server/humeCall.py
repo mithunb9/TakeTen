@@ -18,7 +18,7 @@ all_emotions = ['Anxiety', 'Awkwardness', 'Boredom', 'Confusion', 'Contempt', 'C
                    'Pain', 'Sadness', 'Shame', 'Surprise (negative)', 'Tiredness']
 
 # File path of the image
-image_path = "client/pages/api/image.png"
+image_path = "./image.png"
 
 # Start Hume Batch API
 batch_client = HumeBatchClient(API_KEY)

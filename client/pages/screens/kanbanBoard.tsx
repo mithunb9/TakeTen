@@ -267,16 +267,16 @@ const KanbanBoard: React.FC = () => {
             color="text-[#63D471]"
           />
         </div>
-        <div className="w-[90vw] flex justify-end gap-[15%] items-center h-[10vh]">
-          <div className="flex flex-col mb-[15%]">
+        <div className="w-[95vw] flex justify-end gap-[15%] items-center h-[10vh]">
+          <div className="flex flex-col mb-[20%]">
             <button
-              className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black hover:outline"
+              className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] hover:bg-[#78c0e0]"
               onClick={addTask}
             >
               <AiOutlinePlus />
             </button>
             <button
-              className="rounded-full h-16 my-5 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black hover:outline"
+              className="rounded-full h-16 my-5 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] hover:bg-[#78c0e0] text-white text-black text-4xl px-5"
               onClick={() => setModalSessionOpen(true)}
             >
               <BsPlay />
