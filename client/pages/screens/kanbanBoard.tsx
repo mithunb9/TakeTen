@@ -71,6 +71,18 @@ const KanbanBoard: React.FC = () => {
     setTaskName(event.target.value);
   }
 
+  function updateTaskClass(event: ChangeEvent<HTMLInputElement>): void {
+    event.preventDefault();
+
+    setTaskClass(event.target.value);
+  }
+
+  function updateTaskDueDate(event: ChangeEvent<HTMLInputElement>): void {
+    event.preventDefault();
+
+    setTaskDueDate(event.target.value);
+  }
+
   function submitTaskName(): void {
     if (shown == false) {
       axios.get("/api/task", { params: { name: taskName } }).then((res) => {
@@ -191,34 +203,36 @@ const KanbanBoard: React.FC = () => {
               className="border-2 border-gray-300 p-2 rounded-lg w-full"
             />
 
-            {shown && (
-              <div className="flex flex-row">
-                <input
-                  value={taskClass}
-                  className="border-2 border-gray-300 p-2 rounded-lg w-full"
-                />
-                <input
-                  value={taskDueDate}
-                  className="border-2 border-gray-300 p-2 rounded-lg w-full"
-                />
-              </div>
-            )}
+            <div className="flex flex-row">
+              <input
+                value={taskClass}
+                placeholder="Class Name"
+                onChange={updateTaskClass}
+                className="border-2 border-gray-300 p-2 rounded-lg w-full"
+              />
+              <input
+                value={taskDueDate}
+                placeholder="Due Date"
+                onChange={updateTaskDueDate}
+                className="border-2 border-gray-300 p-2 rounded-lg w-full"
+              />
+            </div>
           </div>
 
           <div className="flex flex-row items-center mt-4">
+            <button
+              onClick={() => setModalOpen(false)}
+              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4"
+            >
+              <GrClose className="mr-2" color="white" />
+              Close
+            </button>
             <button
               className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
               onClick={submitTaskName}
             >
               <GrCheckmark className="mr-2" />
               {(shown && "Confirm") || "Add Task"}
-            </button>
-            <button
-              onClick={() => setModalOpen(false)}
-              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4"
-            >
-              <GrClose className="mr-2" />
-              Close
             </button>
           </div>
         </div>

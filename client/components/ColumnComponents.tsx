@@ -40,7 +40,7 @@ const ColumnComponent: React.FC<ColumnProps> = ({
           .map((task) => (
             <div
               key={task.name}
-              className="bg-white py-[5%] m-[5%] h-[35%] w-[90%] rounded-xl cursor-move flex flex-col justify-center items-center"
+              className="bg-white py-[5%] m-[5%] h-[35%] w-[90%] rounded-xl cursor-move flex flex-col justify-center items-center shadow-md"
               draggable
               onDragStart={(e) => onDragStart(e, task)}
             >
