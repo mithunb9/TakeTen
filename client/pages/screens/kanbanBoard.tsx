@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import ColumnComponent from '../../components/ColumnComponents'; // Import the new component
 
 interface Task {
-id: number; // Unique identifier for each task
-name: string;
-timeToComplete: string;
-progress: string;
-dueDate: string;
-grouping: string;
-
+  id: number; // Unique identifier for each task
+  name: string;
+  timeToComplete: string;
+  progress: string;
+  dueDate: string;
+  grouping: string;
 }
 
 
