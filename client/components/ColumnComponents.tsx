@@ -48,7 +48,7 @@ return (
                 <button className=' bg-[#ffffff51] text-sm px-5 h-8 flex flex-col justify-center rounded-full items-center'>  {columnTitle}</button>   
 
             </div>
-            <div className='flex flex-row w-[90%] h-[20%] justify-evenly item-center ml-[-5%] gap-[10%] mt-[10%]' >
+            <div className='flex flex-row w-[90%] h-[20%] justify-evenly item-center ml-[-2%] gap-[10%] mt-[10%]' >
 
                 <button className='rounded-lg bg-[#ff00006b] text-sm  w-[40%] px-2 flex flex-col justify-center  items-center'>{task.timeToComplete}</button>
                 <button className='rounded-lg bg-[#00a2ff86] text-sm  px-2 w-[40%] flex flex-col justify-center  items-center'>{task.dueDate}</button>
