@@ -4,7 +4,7 @@ import Modal from "../../components/Modal";
 import axios from "axios";
 import { GrCheckmark, GrClose } from "react-icons/gr";
 import { AiOutlinePlus } from "react-icons/ai";
-import {BsPlay} from 'react-icons/bs'
+import { BsPlay } from "react-icons/bs";
 
 interface Task {
   id: number; // Unique identifier for each task
@@ -157,19 +157,19 @@ const KanbanBoard: React.FC = () => {
           />
         </div>
         <div className="w-[90vw] flex justify-end gap-[15%] items-center h-[10vh]">
-            <div className="flex flex-col gap-[5%] mb-[5%]">
-
-
-        
-          <button
-            className="rounded-full h-16 flex items-center justify-center w-16 gap-[2%] hover:bg-[#424cb7] hover:text-white hover:delay-150 text-black text-4xl px-5"
-            onClick={addTask}
-          >
-            <AiOutlinePlus/>
-          </button>
-              <button className="rounded-full h-16 flex items-center justify-center w-16 gap-[2%] hover:bg-[#424cb7] hover:text-white hover:delay-150 text-black text-4xl px-5" onClick={() => setModalOpen(true)}>
-                <BsPlay/>
-              </button>
+          <div className="flex flex-col gap-[5%] mb-[5%]">
+            <button
+              className="rounded-full h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
+              onClick={addTask}
+            >
+              <AiOutlinePlus />
+            </button>
+            <button
+              className="rounded-full h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
+              onClick={() => setModalOpen(true)}
+            >
+              <BsPlay />
+            </button>
           </div>
         </div>
       </div>
@@ -224,13 +224,12 @@ const KanbanBoard: React.FC = () => {
         </div>
       </Modal>
       <Modal
-        isOpen={modalOpen}
+        isOpen={modalSessionOpen}
         onClose={() => {
-          setModalOpen(false);
+          setModalSessionOpen(false);
         }}
       >
         <div className="flex flex-col text-black justify-between h-full">
-          {/* Content to be centered */}
           <div className="flex flex-col items-center">
             <input
               type="number"
