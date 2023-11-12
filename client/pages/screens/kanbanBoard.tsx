@@ -213,13 +213,13 @@ const KanbanBoard: React.FC = () => {
           <div className="flex flex-col mb-[15%]">
 
             <button
-              className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
+              className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black hover:outline"
               onClick={addTask}
             >
               <AiOutlinePlus />
             </button>
             <button
-              className="rounded-full h-16 my-5 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
+              className="rounded-full h-16 my-5 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black hover:outline"
               onClick={() => setModalSessionOpen(true)}
             >
               <BsPlay />
@@ -274,7 +274,7 @@ const KanbanBoard: React.FC = () => {
               className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
               onClick={submitTaskName}
             >
-              <GrCheckmark className="mr-2" />
+              <GrCheckmark className="mr-2" color="white" />
               {(shown && "Confirm") || "Add Task"}
             </button>
           </div>

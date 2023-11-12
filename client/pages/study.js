@@ -47,21 +47,17 @@ const Study = () => {
   }, [router.isReady, router.query]);
 
   return (
-    <div>
-      <div
-        className={
-          "bg-white bg-cover h-[100vh] w-[100vw] bg-[url('../components/images/bg.svg')]"
-        }
-      >
+    <div className="bg-white bg-cover h-[100vh] w-[100vw] bg-[url('../components/images/bg.svg')]">
+      <div className={""}>
         <Navbar />
-        <div className="overflow">
+        <div className="overflow-y-auto max-h-[500px]">
           {data?.map((task) => (
             <div
               key={task.name}
               className="bg-white py-[5%] m-[5%] h-[35%] w-[90%] rounded-xl flex flex-col justify-center items-center shadow-md text-black"
             >
               <div className="w-[90%] flex flex-row justify-between">
-                <h1 className="text-2xl  ">{task.name}</h1>
+                <h1 className="text-2xl">{task.name}</h1>
               </div>
               <div className="flex flex-row w-[90%] h-[20%] justify-evenly item-center ml-[-5%] gap-[10%] mt-[10%]">
                 <button className="rounded-lg bg-[#ff00006b] text-sm  w-[40%] px-2 flex flex-col justify-center  items-center">
