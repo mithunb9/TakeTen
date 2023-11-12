@@ -13,7 +13,6 @@ export async function task(prompt: any) {
   const chatTask = await openai.chat.completions.create({
     messages: [
       {
-        
         role: "user",
         content: `Can you identify the task, due date, class from the following in the format, and an estimated time numerically in hours to complete the task?
       "Task Name"
