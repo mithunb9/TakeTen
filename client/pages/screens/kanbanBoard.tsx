@@ -42,6 +42,7 @@ const KanbanBoard: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const [isUploading, setIsUploading] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const Spinner = () => (
     <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
@@ -183,6 +184,8 @@ const KanbanBoard: React.FC = () => {
   }
 
   function submitTaskName(): void {
+    setIsProcessing(true);
+
     if (shown == false) {
       axios.get("/api/task", { params: { name: taskName } }).then((res) => {
         // remove all spaces from outside the "" and then parse the json
@@ -231,6 +234,8 @@ const KanbanBoard: React.FC = () => {
       setTaskDueDate("");
       setTaskTime("");
       setShown(false);
+
+      setIsProcessing(false);
     }
   }
 
@@ -336,9 +341,9 @@ const KanbanBoard: React.FC = () => {
               />
               <button
                 onClick={handleFileUpload}
-                className="bg-blue-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 h-10 mt-[1.2rem]"
+                className="bg-blue-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 h-10 mt-[1.2rem]"
               >
-                {isUploading ? <Spinner /> : <GrAttachment />}
+                {isUploading ? <Spinner /> : <GrAttachment class="mr-2" />}
                 {isUploading ? "Uploading..." : " Upload"}
               </button>
             </div>
@@ -347,7 +352,7 @@ const KanbanBoard: React.FC = () => {
           <div className="flex flex-row items-center mt-4">
             <button
               onClick={() => setModalOpen(false)}
-              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center mr-4"
+              className="bg-gray-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center mr-4"
             >
               <GrClose className="mr-2" color="white" />
               Close
@@ -375,13 +380,13 @@ const KanbanBoard: React.FC = () => {
               placeholder="Number of hours to study"
               value={length}
               onChange={(e) => setLength(parseInt(e.target.value))}
-              className="border-2 border-gray-300 p-2 rounded-lg w-full"
+              className="border-2 border-black bg-inherit p-2 rounded-lg w-full"
             />
 
             <div className="flex flex-row items-center mt-4">
               <button
                 onClick={() => setModalSessionOpen(false)}
-                className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
+                className="bg-gray-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center mr-4"
               >
                 <GrClose className="mr-2" color="white" />
                 Close
@@ -390,8 +395,8 @@ const KanbanBoard: React.FC = () => {
                 className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4 "
                 onClick={startSession}
               >
-                <GrCheckmark className="mr-2" />
-                Confirm
+                {isProcessing ? <Spinner /> : <GrCheckmark className="mr-2" />}
+                {isProcessing ? "Processing..." : " Submit"}
               </button>
             </div>
           </div>
