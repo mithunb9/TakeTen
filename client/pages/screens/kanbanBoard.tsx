@@ -209,17 +209,17 @@ const KanbanBoard: React.FC = () => {
             color="text-[#63D471]"
           />
         </div>
-        <div className="w-[90vw] flex justify-end gap-[15%] items-center h-[10vh]">
-          <div className="flex flex-col mb-[15%]">
+        <div className="w-[95vw] flex justify-end gap-[15%] items-center h-[10vh]">
+          <div className="flex flex-col mb-[20%]">
 
             <button
-              className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black hover:outline"
+              className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] hover:bg-[#78c0e0]"
               onClick={addTask}
             >
               <AiOutlinePlus />
             </button>
             <button
-              className="rounded-full h-16 my-5 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black hover:outline"
+              className="rounded-full h-16 my-5 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] hover:bg-[#78c0e0] text-white text-black text-4xl px-5"
               onClick={() => setModalSessionOpen(true)}
             >
               <BsPlay />
@@ -295,14 +295,8 @@ const KanbanBoard: React.FC = () => {
               onChange={(e) => setLength(parseInt(e.target.value))}
               className="border-2 border-gray-300 p-2 rounded-lg w-full"
             />
-            <div className=" flex flex-row justify-end items-center mt-[-30vh]">
-              <div className="w-[20vw] h-[35vh] mr-5 bg-black">
 
-              </div>
-              <Webcam />
-            </div>
-          </div>
-          <div className="flex flex-row items-center mt-4">
+          <div className="flex flex-row w-[90%] h-[5vh] bg-red items-center mt-4">
             <button
               onClick={() => setModalOpen(false)}
               className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
@@ -317,6 +311,7 @@ const KanbanBoard: React.FC = () => {
               <GrCheckmark className="mr-2" />
               Confirm
             </button>
+          </div>
           </div>
         </div>
       </Modal>

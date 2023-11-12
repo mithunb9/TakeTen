@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/NavBar";
 import { useRouter } from "next/router";
+import Webcam from "./screens/photos";
 
 function extractHours(timeStr) {
   let matches = timeStr.match(/(\d+)/);
@@ -50,11 +51,33 @@ const Study = () => {
     <div className="bg-white bg-cover h-[100vh] w-[100vw] bg-[url('../components/images/bg.svg')]">
       <div className={""}>
         <Navbar />
-        <div className="overflow-y-auto max-h-[500px]">
+        <div className="flex flex-row justify-center items-center mt-[4%]">
+        <div className="overflow-y-auto max-h-[60vh] w-[30vw] mt-[-5%] ">
           {data?.map((task) => (
             <div
               key={task.name}
-              className="bg-white py-[5%] m-[5%] h-[35%] w-[90%] rounded-xl flex flex-col justify-center items-center shadow-md text-black"
+              className="bg-white py-[5%] m-[5%] h-[45%] w-[90%] rounded-xl flex flex-col justify-center items-center shadow-md text-black"
+            >
+              <div className="w-[90%] flex flex-row justify-between">
+                <h1 className="text-2xl">{task.name}</h1>
+              </div>
+              <div className="flex flex-row w-[90%] h-[20%] justify-evenly item-center ml-[-5%] gap-[10%] mt-[10%]">
+                <button className="rounded-lg bg-[#ff00006b] text-sm  w-[40%] px-2 flex flex-col justify-center  items-center">
+                  {task.timeToComplete}
+                </button>
+                <button className="rounded-lg bg-[#00a2ff86] text-sm  px-2 w-[40%] flex flex-col justify-center  items-center">
+                  {task.dueDate}
+                </button>
+                <button className="rounded-lg bg-[#00ff1186] text-sm  px-2 w-[40%] flex flex-col justify-center  items-center">
+                  {task.grouping}
+                </button>
+              </div>
+            </div>
+          ))}
+          {data?.map((task) => (
+            <div
+              key={task.name}
+              className="bg-white py-[5%] m-[5%] h-[45%] w-[90%] rounded-xl flex flex-col justify-center items-center shadow-md text-black"
             >
               <div className="w-[90%] flex flex-row justify-between">
                 <h1 className="text-2xl">{task.name}</h1>
@@ -73,7 +96,11 @@ const Study = () => {
             </div>
           ))}
         </div>
+        <div className="max-h-[85vh]" >
+          <Webcam/>
+        </div>
       </div>
+    </div>
     </div>
   );
 };

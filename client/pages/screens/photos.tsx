@@ -31,20 +31,19 @@ export default function Photos () {
         if (isCapturing) {
             capture();
         }
-    }, 2000);
+    }, 5000);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
-            <div className="relative">
-                <div className="flex flex-row gap-[5%]">
+        <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col gap-[5%]">
                     <Webcam
                         audio={false}
-                        width={360}
-                        height={360}
+                        width={720}
+                        height={400}
                         ref={webcamRef}
                         screenshotFormat="image/png"
                         videoConstraints={videoConstraints}
-                        className="rounded-md"
+                        className="rounded-lg"
                     />
                     {/* //a little buggy so possibly not show
                     {url && isCapturing && (
@@ -52,18 +51,17 @@ export default function Photos () {
                         <img src={url} alt="Screenshot" className="rounded-md" />
                     </div>
                     )} */}
-                </div>
-
-                <div className=" flex justify-center">
-                    <button className="bg-gray-800 text-white py-2 px-4 rounded-md m-2" onClick={toggleCapture}>
+                   <div className=" flex flex-row justify-center items-center">
+                    <button className="bg-gray-800 text-white py-2 px-4 rounded-md " onClick={toggleCapture}>
                         {isCapturing ? 'Pause' : 'Start'}
                     </button>
                     <button className="bg-gray-800 text-white py-2 px-4 rounded-md m-2" onClick={() => setUrl(null)}>
                         Delete
                     </button>
                 </div>
-            </div>
+                </div>
 
-        </div>
+
+            </div>
     );
 };
