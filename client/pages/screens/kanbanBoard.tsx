@@ -134,6 +134,7 @@ const KanbanBoard: React.FC = () => {
             onDrop={handleDrop}
             allowDrop={allowDrop}
             onDragStart={handleDragStart}
+            color="bg-[#E94F37] text-white"
           />
           <div className="w-0.25 h-[100%] border border-black" />
           <ColumnComponent
@@ -142,6 +143,7 @@ const KanbanBoard: React.FC = () => {
             onDrop={handleDrop}
             allowDrop={allowDrop}
             onDragStart={handleDragStart}
+            color="bg-[#56638A] text-white"
           />
           <div className="w-0.25 h-[100%] border border-black" />
 
@@ -151,6 +153,7 @@ const KanbanBoard: React.FC = () => {
             onDrop={handleDrop}
             allowDrop={allowDrop}
             onDragStart={handleDragStart}
+            color="bg-[#63D471] text-white"
           />
         </div>
         <div className="w-[90vw] flex justify-end gap-[15%] items-center h-[10vh]">
