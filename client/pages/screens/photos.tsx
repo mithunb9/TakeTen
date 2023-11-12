@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useRef, useState, useCallback, useEffect } from "react";
 import Webcam from "react-webcam";
@@ -12,6 +13,7 @@ export default function Photos () {
     const webcamRef = useRef<Webcam>(null);
     const [url, setUrl] = useState<string | null>(null);
     const [isCapturing, setIsCapturing] = useState<boolean>(false);
+    const [highStress, setHighStress] = useState(0);
     
 
     const capture = useCallback(() => {
@@ -27,6 +29,28 @@ export default function Photos () {
         }
     }, [webcamRef]);
 
+    
+    //listen for messages from the server
+    const socketRef = useRef<WebSocket | null>(null);
+
+    useEffect(() => {
+        // Create WebSocket connection
+        socketRef.current = new WebSocket('ws://localhost:8765');
+
+        // Listen for messages
+        const handleMessage = (e: { data: any; }) => {
+            console.log("Message received:", e.data);
+            // Here you can update the state based on the received message
+            // For example, if you're expecting a JSON message:
+            // const data = JSON.parse(e.data);
+            // setSomeState(data);
+        };
+
+        socketRef.current.addEventListener('message', () => handleMessage);
+
+        // Clean up
+    }, []);    
+    
     const toggleCapture = () => {
         setIsCapturing(!isCapturing);
     }
@@ -39,7 +63,7 @@ export default function Photos () {
         if (isCapturing) {
             capture();
         }
-        }, 5000);
+        }, 2000);
 
         return () => clearInterval(interval);
     }, [isCapturing, capture]);
@@ -67,7 +91,7 @@ export default function Photos () {
                         {isCapturing ? 'Pause' : 'Start'} {counter}
                     </button>
                     <button className="bg-gray-800 text-white py-2 px-4 rounded-md m-2" onClick={() => setUrl(null)}>
-                        Delete
+                        Delete {highStress}
                     </button>
                 </div>
                 </div>
