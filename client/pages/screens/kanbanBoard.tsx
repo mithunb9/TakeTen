@@ -5,6 +5,7 @@ import axios from "axios";
 import { GrCheckmark, GrClose } from "react-icons/gr";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsPlay } from "react-icons/bs";
+import {HiOutlineDocumentDownload} from "react-icons/hi";
 
 interface Task {
   id: number; // Unique identifier for each task
@@ -26,6 +27,7 @@ const KanbanBoard: React.FC = () => {
   const [shown, setShown] = useState(false);
 
   const [modalSessionOpen, setModalSessionOpen] = useState(false);
+  const [fileUploadModalOpen, setFileUploadModalOpen] = useState(false);
 
   const addTask = () => {
     setModalOpen(true);
@@ -169,15 +171,22 @@ const KanbanBoard: React.FC = () => {
           />
         </div>
         <div className="w-[90vw] flex justify-end gap-[15%] items-center h-[10vh]">
-          <div className="flex flex-col gap-[5%] mb-[5%]">
+          <div className="flex flex-col  mb-[15%]">
             <button
-              className="rounded-full h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
+            className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
+            onClick={() => setFileUploadModalOpen(true)}
+            >
+            <HiOutlineDocumentDownload/>
+
+            </button>
+            <button
+              className="rounded-full my-5 h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
               onClick={addTask}
             >
               <AiOutlinePlus />
             </button>
             <button
-              className="rounded-full h-16 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
+              className="rounded-full h-16 my-5 flex items-center justify-center w-16 gap-[2%] bg-[#424cb7] text-white hover:delay-150 text-black text-4xl px-5 hover:bg-white hover:text-black"
               onClick={() => setModalOpen(true)}
             >
               <BsPlay />
@@ -267,6 +276,15 @@ const KanbanBoard: React.FC = () => {
           </div>
         </div>
       </Modal>
+      <Modal
+        isOpen={modalSessionOpen}
+          onClose={() => {
+            setFileUploadModalOpen(false);
+          }}
+        >
+      
+      </Modal>
+        
     </>
   );
 };
