@@ -27,3 +27,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+* {
+  font-family: 'Ubuntu', sans-serif;
+}

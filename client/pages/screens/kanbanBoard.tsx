@@ -4,6 +4,7 @@ import Modal from "../../components/Modal";
 import axios from "axios";
 import { GrCheckmark, GrClose } from "react-icons/gr";
 import { AiOutlinePlus } from "react-icons/ai";
+import {BsPlay} from 'react-icons/bs'
 
 interface Task {
   id: number; // Unique identifier for each task
@@ -23,6 +24,8 @@ const KanbanBoard: React.FC = () => {
   const [taskDueDate, setTaskDueDate] = useState("");
   const [taskTime, setTaskTime] = useState("");
   const [shown, setShown] = useState(false);
+
+  const [modalSessionOpen, setModalSessionOpen] = useState(false);
 
   const addTask = () => {
     setModalOpen(true);
@@ -153,13 +156,21 @@ const KanbanBoard: React.FC = () => {
             color="bg-[#63D471] text-white"
           />
         </div>
-        <div className="w-[90vw] flex justify-end items-center h-[10vh]">
+        <div className="w-[90vw] flex justify-end gap-[15%] items-center h-[10vh]">
+            <div className="flex flex-col gap-[5%] mb-[5%]">
+
+
+        
           <button
-            className=" bg-[#424cb7] rounded-full h-16 flex items-center justify-center w-16 gap-[2%] hover:bg-[#ffffff29] text-white hover:delay-150 hover:text-black text-4xl px-5"
+            className="rounded-full h-16 flex items-center justify-center w-16 gap-[2%] hover:bg-[#424cb7] hover:text-white hover:delay-150 text-black text-4xl px-5"
             onClick={addTask}
           >
-            <AiOutlinePlus />
+            <AiOutlinePlus/>
           </button>
+              <button className="rounded-full h-16 flex items-center justify-center w-16 gap-[2%] hover:bg-[#424cb7] hover:text-white hover:delay-150 text-black text-4xl px-5" onClick={() => setModalOpen(true)}>
+                <BsPlay/>
+              </button>
+          </div>
         </div>
       </div>
 
@@ -169,7 +180,7 @@ const KanbanBoard: React.FC = () => {
           setModalOpen(false);
         }}
       >
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between text-black h-full">
           {/* Content to be centered */}
           <div className="flex flex-col items-center">
             <input
@@ -207,6 +218,37 @@ const KanbanBoard: React.FC = () => {
               className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4"
             >
               <GrClose className="mr-2" />
+              Close
+            </button>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={modalOpen}
+        onClose={() => {
+          setModalOpen(false);
+        }}
+      >
+        <div className="flex flex-col text-black justify-between h-full">
+          {/* Content to be centered */}
+          <div className="flex flex-col items-center">
+            <input
+              type="number"
+              placeholder="Number of hours to study"
+              className="border-2 border-gray-300 p-2 rounded-lg w-full"
+            />
+          </div>
+          <div className="flex flex-row items-center mt-4">
+            <button
+              className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center"
+              onClick={() => setModalOpen(false)}
+            >
+              Confirm
+            </button>
+            <button
+              onClick={() => setModalOpen(false)}
+              className="bg-gray-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded flex flex-row justify-center items-center ml-4"
+            >
               Close
             </button>
           </div>
